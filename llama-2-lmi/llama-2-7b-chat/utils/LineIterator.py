@@ -13,32 +13,35 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+# --
+# --  Author:        Pavan Kumar Rao Navule
+# --  Date:          21/11/2023
+# --  Purpose:       Iterates over the byte stream from Llama 2 model inferenced with LMI Container.
+# --  Version:       0.1.0
+# --  Disclaimer:    This script is provided "as is" in accordance with the repository license
+# --  History
+# --  When        Version     Who         What
+# --  -----------------------------------------------------------------
+# --  21/11/2023  0.1.0       Pavan Kumar Rao Navule    Initial
+# --  -----------------------------------------------------------------
+# --
+
 import io
 
 class LineIterator:
     """
-    A helper class for parsing the byte stream input. 
+    A helper class for parsing the byte stream from Llama 2 model inferenced with LMI Container. 
     
-    The output of the model will be in the following format:
+    The output of the model will be in the following repetetive but incremental format:
     ```
-    b'{"outputs": [" a"]}\n'
-    b'{"outputs": [" challenging"]}\n'
-    b'{"outputs": [" problem"]}\n'
+    b'{"generated_text": Hel"'
+    b'{"generated_text": Hello fr"'
+    b'{"generated_text": Hello from "'
+    b'{"generated_text": Hello from LLM"'
     ...
-    ```
-    
-    While usually each PayloadPart event from the event stream will contain a byte array 
-    with a full json, this is not guaranteed and some of the json objects may be split across
-    PayloadPart events. For example:
-    ```
-    {'PayloadPart': {'Bytes': b'{"outputs": '}}
-    {'PayloadPart': {'Bytes': b'[" problem"]}\n'}}
-    ```
-    
-    This class accounts for this by concatenating bytes written via the 'write' function
-    and then exposing a method which will return lines (ending with a '\n' character) within
-    the buffer via the 'scan_lines' function. It maintains the position of the last read 
-    position to ensure that previous bytes are not exposed again. 
+
+    For each iteration, we just read the incremental part and seek for the new position for the next iteration till the end of the line.
+
     """
     
     def __init__(self, stream):
@@ -53,9 +56,9 @@ class LineIterator:
         while True:
             self.buffer.seek(self.read_pos)
             line = self.buffer.readline()
-            if line and line[-1] == ord('\n'):
+            if line:
                 self.read_pos += len(line)
-                return line[:-1]
+                return line
             try:
                 chunk = next(self.byte_iterator)
             except StopIteration:
