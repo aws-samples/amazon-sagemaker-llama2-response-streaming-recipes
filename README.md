@@ -10,7 +10,7 @@ To be precise, these are DLC for Large Model Inference and the [recently announc
 
 This repo covers Deploy and Inference Llama 2 Models on SageMaker via Response Streaming.
 
-![Llama-2 Streaming Response](https://github.com/windson/amazon-sagemaker-llama2-response-streaming-recipes/assets/1826682/4ebe0e47-1f46-4c1c-80d6-5239035de80a)
+![Llama-2 Streaming Response](/stream.gif)
 
 | DLC | Model ID | Deploy Notebook | Inference Notebook |
 | --- | --- | --- | --- |
