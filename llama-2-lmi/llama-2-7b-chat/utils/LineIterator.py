@@ -16,7 +16,7 @@
 # --
 # --  Author:        Pavan Kumar Rao Navule
 # --  Date:          21/11/2023
-# --  Purpose:       Iterates over the byte stream from Llama 2 model inferenced with LMI Container.
+# --  Purpose:       Iterates over the byte stream from Llama 2 Chat models inferenced with LMI Container with djl-deepspeed version 0.24.0.
 # --  Version:       0.1.0
 # --  Disclaimer:    This script is provided "as is" in accordance with the repository license
 # --  History
