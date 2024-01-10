@@ -21,6 +21,10 @@ This repo covers Deploy and Inference Llama 2 Models on SageMaker via Response S
 | LMI | meta-llama/Llama-2-13b-chat-hf | [Deploy](/llama-2-lmi/llama-2-13b-chat/1-deploy-llama-2-13b-chat-lmi-response-streaming.ipynb) | [Inference](/llama-2-lmi/llama-2-13b-chat/2-inference-llama-2-13b-chat-lmi-response-streaming.ipynb) |
 | LMI | meta-llama/Llama-2-70b-chat-hf | [Deploy](/llama-2-lmi/llama-2-70b-chat/1-deploy-llama-2-70b-chat-lmi-response-streaming.ipynb) | [Inference](/llama-2-lmi/llama-2-70b-chat/2-inference-llama-2-70b-chat-lmi-response-streaming.ipynb) |
 
+## Blog
+
+📖 [Inference Llama 2 models with real-time response streaming using Amazon SageMaker](https://aws.amazon.com/blogs/machine-learning/inference-llama-2-models-with-real-time-response-streaming-using-amazon-sagemaker/)
+
 ## References
 
 - [Sagemaker Real-time Inference now supports response streaming](https://aws.amazon.com/about-aws/whats-new/2023/09/sagemaker-real-time-inference-response-streaming)
